@@ -80,7 +80,7 @@ tape("binary", (t) => {
 		binary(P, Q, t);
 		for (let i = 0; i < P.shape[0]; ++i) {
 			if (!(P.get(i) === i + 1001)) {
-				t.fail(testName + "; encountered " + P.get(i) + " instead of " + (i + 1001) + " at " + i);
+				t.fail(`${testName}; encountered ${P.get(i)} instead of ${(i + 1001)} at ${i}`);
 				return;
 			}
 		}
@@ -128,7 +128,7 @@ tape("binary", (t) => {
 		for (let i = 0; i < P.shape[0]; ++i) {
 			for (let j = 0; j < P.shape[1]; ++j) {
 				if (!(P.get(i, j) === i * 1000 + j + 1001)) {
-					t.fail(testName + "; encountered " + P.get(i, j) + " instead of " + (i * 1000 + j + 1001) + " at (" + i + "," + j + ")");
+					t.fail(`${testName}; encountered ${P.get(i, j)} instead of ${(i * 1000 + j + 1001)} at (" + i + "," + j + ")`);
 					return;
 				}
 			}
@@ -163,7 +163,7 @@ function bundleCasesFrom(i: number) {
 	if (i >= cases.length) return;
 	const b = browserify();
 	b.ignore("tape");
-	b.add(__dirname + "/" + cases[i] + ".js");
+	b.add(`${__dirname}/${cases[i]}.js`);
 	b.transform(path.normalize(__dirname + "/../cwise.js"));
 	tape(cases[i], (t) => { // Without nested tests, the asynchronous nature of bundle causes issues with tape...
 		b.bundle((err, src) => {
@@ -209,7 +209,7 @@ tape("fill", (t) => {
 
 	for (let i = 0; i < xlen; i++) {
 		for (let j = 0; j < ylen; j++) {
-			t.equals(array.get(i, j), 0, 'fill (' + i + ',' + j + ')');
+			t.equals(array.get(i, j), 0, `fill (${i},${j})`);
 		}
 	}
 
