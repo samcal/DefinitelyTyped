@@ -66,7 +66,7 @@ tape("binary", (t) => {
 	const binary = cwise({
 		args: ["array", "array", "scalar", "shape", "index"],
 		body(a: number, b: number, t: tape.Test, s: number[], idx: number) {
-			if (!(a === 0)) t.fail("idx:" + idx + ", shape:" + s + ",a:" + a);
+			if (!(a === 0)) t.fail(`idx:${idx}, shape:${s},a:${a}`);
 			a = b + 1001;
 		}
 	});
